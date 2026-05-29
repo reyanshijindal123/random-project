@@ -1,42 +1,65 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import TodoForm from "./component/Todoform";
+import TodoList from "./component/Todolist";
+
+type Todo = {
+  title: string;
+  description: string;
+};
 
 export default function Home() {
 
-  const [users, setUsers] = useState([]);
+  // STORE ALL TODOS
+  const [todos, setTodos] = useState<Todo[]>([]);
 
-  const getUsers = async () => {
+  // LOAD TODOS FROM LOCAL STORAGE
+  useEffect(() => {
 
-    
-    const response = await fetch(
-      "https://jsonplaceholder.typicode.com/users"
+    const storedTodos =
+      localStorage.getItem("todos");
+
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+
+  }, []);
+
+  // ADD TODO FUNCTION
+  const addTodo = (todo: Todo) => {
+
+    // CREATE NEW ARRAY
+    const updatedTodos = [...todos, todo];
+
+    // UPDATE STATE
+    setTodos(updatedTodos);
+
+    // SAVE TO LOCAL STORAGE
+    localStorage.setItem(
+      "todos",
+      JSON.stringify(updatedTodos)
     );
-
-  
-    const data = await response.json();
-
-    
-    console.log("API called",data);
-
-    
-    setUsers(data);
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <main className="min-h-screen flex justify-center items-center bg-gray-100">
 
-      <button onClick={getUsers}>
-        Load Users
-      </button>
+      <div className="w-[400px] bg-white p-8 rounded-2xl shadow-lg">
 
-      {users.map((user: any) => (
-        <div key={user.id}>
-          <h2>{user.name}</h2>
-          <p>{user.email}</p>
-        </div>
-      ))}
+        <h1 className="text-3xl font-bold text-center mb-6">
+          Todo App
+        </h1>
 
-    </div>
+        {/* FORM */}
+        <TodoForm addTodo={addTodo} />
+
+        {/* TODO LIST */}
+        <TodoList todos={todos} />
+
+      </div>
+
+    </main>
   );
 }
