@@ -1,54 +1,52 @@
 "use client";
 
-import { useState } from "react";
-
-type Todo = {
-  title: string;
-  description: string;
-};
+import { useEffect, useState } from "react";
+import { Todo } from "../page";
 
 export default function TodoForm({
-  addTodo,
+  addOrUpdateTodo,
+  editTodoData,
+  isEditing,
 }: {
-  addTodo: (todo: Todo) => void;
+  addOrUpdateTodo: (todo: Todo) => void;
+  editTodoData: Todo | null;
+  isEditing: boolean;
 }) {
-
-  // STORE TITLE INPUT
   const [title, setTitle] = useState("");
+  const [description, setDescription] =
+    useState("");
 
-  // STORE DESCRIPTION INPUT
-  const [description, setDescription] = useState("");
+  useEffect(() => {
+    if (editTodoData) {
+      setTitle(editTodoData.title);
+      setDescription(editTodoData.description);
+    }
+  }, [editTodoData]);
 
-  // BUTTON FUNCTION
   const handleSubmit = () => {
-
-    // CHECK EMPTY INPUT
     if (!title || !description) return;
 
-    // SEND DATA TO PARENT
-    addTodo({
+    addOrUpdateTodo({
       title,
       description,
     });
 
-    // CLEAR INPUTS
     setTitle("");
     setDescription("");
   };
 
   return (
     <div className="flex flex-col gap-4">
-
-      {/* TITLE INPUT */}
       <input
         type="text"
         placeholder="Enter title"
         className="border p-3 rounded-lg"
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={(e) =>
+          setTitle(e.target.value)
+        }
       />
 
-      {/* DESCRIPTION INPUT */}
       <textarea
         placeholder="Enter description"
         className="border p-3 rounded-lg"
@@ -58,12 +56,13 @@ export default function TodoForm({
         }
       />
 
-      {/* BUTTON */}
       <button
         onClick={handleSubmit}
         className="bg-black text-white p-3 rounded-lg"
       >
-        Add Todo
+        {isEditing
+          ? "Update Todo"
+          : "Add Todo"}
       </button>
     </div>
   );

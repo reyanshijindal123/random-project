@@ -4,12 +4,9 @@ export const saveTodos = (todos: any) => {
     JSON.stringify(todos)
   );
 };
+
 export const getTodos = () => {
-  const data = localStorage.getItem("todos");
-
-  if (!data) {
-    return [];
-  }
-
-  return JSON.parse(data);
+  return JSON.parse(
+    localStorage.getItem("todos") || "[]"
+  );
 };

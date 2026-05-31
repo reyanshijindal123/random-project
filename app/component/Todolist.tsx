@@ -1,7 +1,4 @@
-type Todo = {
-  title: string;
-  description: string;
-};
+import { Todo } from "../page";
 
 export default function TodoList({
   todos,
@@ -27,7 +24,7 @@ export default function TodoList({
             {todo.description}
           </p>
 
-          <div className="flex gap-2 mt-2">
+          <div className="flex gap-2 mt-3">
             <button
               onClick={() => editTodo(index)}
               className="bg-blue-500 text-white px-3 py-1 rounded"
