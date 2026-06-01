@@ -13,8 +13,7 @@ export default function TodoForm({
   isEditing: boolean;
 }) {
   const [title, setTitle] = useState("");
-  const [description, setDescription] =
-    useState("");
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     if (editTodoData) {
@@ -24,7 +23,8 @@ export default function TodoForm({
   }, [editTodoData]);
 
   const handleSubmit = () => {
-    if (!title || !description) return;
+    if (!title.trim() || !description.trim())
+      return;
 
     addOrUpdateTodo({
       title,
@@ -37,33 +37,35 @@ export default function TodoForm({
 
   return (
     <div className="flex flex-col gap-4">
+
       <input
         type="text"
         placeholder="Enter title"
-        className="border p-3 rounded-lg"
         value={title}
         onChange={(e) =>
           setTitle(e.target.value)
         }
+        className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-blue-300 outline-none"
       />
 
       <textarea
         placeholder="Enter description"
-        className="border p-3 rounded-lg"
         value={description}
         onChange={(e) =>
           setDescription(e.target.value)
         }
+        className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-purple-300 outline-none"
       />
 
       <button
         onClick={handleSubmit}
-        className="bg-black text-white p-3 rounded-lg"
+        className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold hover:scale-105 transition"
       >
         {isEditing
           ? "Update Todo"
           : "Add Todo"}
       </button>
+
     </div>
   );
 }

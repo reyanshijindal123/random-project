@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import TodoForm from "./component/Todoform";
-import TodoList from "./component/Todolist";
-import { getTodos, saveTodos } from "./component/helper/localstorage";
+import TodoForm from "./component/TodoForm";
+import TodoList from "./component/TodoList";
+import { getTodos,saveTodos } from "./utils/localStorage";
 
 export type Todo = {
   title: string;
@@ -47,10 +47,11 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="w-[450px] bg-white p-8 rounded-xl shadow">
-        <h1 className="text-3xl font-bold text-center mb-6">
-          Todo App
+    <main className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 flex justify-center items-center p-4">
+      <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl p-8 w-full max-w-xl">
+
+        <h1 className="text-4xl font-bold text-center mb-6">
+          Todo App 🚀
         </h1>
 
         <TodoForm
@@ -68,6 +69,7 @@ export default function Home() {
           deleteTodo={deleteTodo}
           editTodo={editTodo}
         />
+
       </div>
     </main>
   );
