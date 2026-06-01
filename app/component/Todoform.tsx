@@ -45,8 +45,19 @@ export default function TodoForm({
         onChange={(e) =>
           setTitle(e.target.value)
         }
-        className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-blue-300 outline-none"
-      />
+className="
+w-full
+px-4
+py-3
+text-sm
+md:text-base
+rounded-xl
+border
+border-gray-300
+focus:ring-4
+focus:ring-blue-300
+outline-none
+"      />
 
       <textarea
         placeholder="Enter description"
@@ -54,13 +65,36 @@ export default function TodoForm({
         onChange={(e) =>
           setDescription(e.target.value)
         }
-        className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-purple-300 outline-none"
-      />
+className="
+w-full
+px-4
+py-3
+text-sm
+md:text-base
+rounded-xl
+border
+border-gray-300
+focus:ring-4
+focus:ring-purple-300
+outline-none
+"      />
 
       <button
         onClick={handleSubmit}
-        className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold hover:scale-105 transition"
-      >
+className="
+w-full
+md:w-auto
+px-6
+py-3
+bg-gradient-to-r
+from-blue-500
+to-purple-600
+text-white
+rounded-xl
+font-semibold
+hover:scale-105
+transition
+"      >
         {isEditing
           ? "Update Todo"
           : "Add Todo"}

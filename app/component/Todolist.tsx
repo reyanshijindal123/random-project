@@ -21,18 +21,46 @@ export default function TodoList({
       {todos.map((todo, index) => (
         <div
           key={index}
-          className="bg-white rounded-2xl p-5 border shadow-md hover:shadow-xl transition"
-        >
-          <h2 className="text-xl font-bold">
-            {todo.title}
-          </h2>
+className="
+bg-white
+rounded-2xl
+p-4
+md:p-6
+border
+shadow-md
+hover:shadow-xl
+transition
+"        >
+<h2
+  className="
+  text-lg
+  md:text-xl
+  font-bold
+  break-words
+  "
+>            {todo.title}
+  </h2>
 
-          <p className="text-gray-600 mt-2">
-            {todo.description}
+<p
+  className="
+  text-sm
+  md:text-base
+  text-gray-600
+  mt-2
+  break-words
+  "
+>            {todo.description}
           </p>
 
-          <div className="flex gap-3 mt-4">
-
+<div
+  className="
+  flex
+  flex-col
+  md:flex-row
+  gap-3
+  mt-4
+  "
+>
             <button
               onClick={() => editTodo(index)}
               className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"

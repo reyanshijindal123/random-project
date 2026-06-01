@@ -48,9 +48,29 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 flex justify-center items-center p-4">
-      <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl p-8 w-full max-w-xl">
-
-        <h1 className="text-4xl font-bold text-center mb-6">
+  <div
+    className="
+    w-full
+    max-w-md
+    md:max-w-xl
+    lg:max-w-2xl
+    bg-white/80
+    backdrop-blur-md
+    rounded-3xl
+    shadow-2xl
+    p-4
+    md:p-8
+    "
+  >
+    <h1
+  className="
+  text-2xl
+  md:text-4xl
+  font-bold
+  text-center
+  mb-6
+  "
+>
           Todo App 🚀
         </h1>
 
